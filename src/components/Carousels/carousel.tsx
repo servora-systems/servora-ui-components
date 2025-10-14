@@ -1,107 +1,90 @@
-import Image from "next/image";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselNavigation,
-  CarouselItem,
-} from "@/components/servor-ui/ui/carousel";
+import React, { useState } from "react";
+import { Button } from "../button";
 
 const carouselItems = [
   {
     id: 1,
-    imageUrl:
-      "https://cdn.pixabay.com/photo/2024/09/20/05/39/panda-9060543_640.jpg",
+    imageUrl: "https://images.unsplash.com/photo/1506905925346-21bda4d32df4?w=400&h=600&fit=crop",
     quote: "Success is not in what you have, but who you are.",
   },
   {
     id: 2,
-    imageUrl:
-      "https://cdn.pixabay.com/photo/2024/04/12/18/18/ai-generated-8692405_1280.jpg",
+    imageUrl: "https://images.unsplash.com/photo-1519904981063-b0cf448d479e?w=400&h=600&fit=crop",
     quote: "The best way to predict the future is to create it.",
   },
   {
     id: 3,
-    imageUrl:
-      "https://cdn.pixabay.com/photo/2024/01/10/03/29/ai-generated-8498790_1280.jpg",
-    quote: "Don’t watch the clock; do what it does. Keep going.",
-  },
-  {
-    id: 4,
-    imageUrl:
-      "https://cdn.pixabay.com/photo/2024/05/30/17/23/bicycle-8798997_640.jpg",
-    quote: "Believe you can and you're halfway there.",
-  },
-  {
-    id: 5,
-    imageUrl:
-      "https://cdn.pixabay.com/photo/2024/05/26/10/26/ai-generated-8788505_960_720.jpg",
-    quote:
-      "Success usually comes to those who are too busy to be looking for it.",
-  },
-  {
-    id: 6,
-    imageUrl:
-      "https://cdn.pixabay.com/photo/2024/06/08/16/16/ai-generated-8817146_640.jpg",
-    quote: "Opportunities don't happen, you create them.",
-  },
-  {
-    id: 7,
-    imageUrl:
-      "https://cdn.pixabay.com/photo/2024/06/12/11/43/cottage-8825141_640.jpg",
-    quote: "Don’t be afraid to give up the good to go for the great.",
+    imageUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=600&fit=crop",
+    quote: "Don't watch the clock; do what it does. Keep going.",
   },
 ];
 
 export function CarouselDemo() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const nextSlide = () => {
+    setCurrentIndex((prev) => (prev + 1) % carouselItems.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex((prev) => (prev - 1 + carouselItems.length) % carouselItems.length);
+  };
+
   return (
-    <div className="min-h-screen flex items-center justify-center]">
-      <div className="relative w-full px-4 pb-[5rem]">
-        <Carousel>
-          <CarouselContent className="-ml-4">
-            {carouselItems.map((item) => (
-              <CarouselItem key={item.id} className="sm:basis-1/3 pl-4">
-                <div
-                  className="relative flex shrink-0 snap-start scroll-ml-[var(--scroll-padding)] flex-col justify-end overflow-hidden rounded-3xl aspect-[3/4] w-full dark:border "
-                  style={{ opacity: 1 }}
-                >
-                  <Image
-                    alt="Carousel image"
-                    src={item.imageUrl}
-                    fill
-                    className="absolute inset-x-0 top-0 aspect-square w-full object-cover"
-                  />
+    <div className="min-h-screen flex items-center justify-center bg-gray-50">
+      <div className="relative w-full max-w-4xl px-4">
+        <div className="relative overflow-hidden rounded-3xl bg-white shadow-lg">
+          <div className="relative h-96">
+            <img
+              src={carouselItems[currentIndex].imageUrl}
+              alt={`Slide ${currentIndex + 1}`}
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+            
+            <div className="absolute bottom-6 left-6 right-6">
+              <blockquote className="text-white">
+                <p className="text-lg md:text-xl font-medium">
+                  "{carouselItems[currentIndex].quote}"
+                </p>
+              </blockquote>
+            </div>
+          </div>
 
-                  <div
-                    aria-hidden="true"
-                    className="absolute inset-0 rounded-3xl bg-gradient-to-t from-black from-[calc(7/16*100%)] ring-1 ring-inset ring-gray-950/10 sm:from-25%"
-                  />
+          <div className="absolute top-1/2 left-4 transform -translate-y-1/2">
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={prevSlide}
+              className="bg-white/80 hover:bg-white"
+            >
+              ←
+            </Button>
+          </div>
 
-                  <figure className="relative p-4 sm:p-6 lg:p-10">
-                    <blockquote>
-                      <p className="relative text-sm sm:text-md md:text-lg lg:text-xl text-white">
-                        <span
-                          aria-hidden="true"
-                          className="absolute -translate-x-full"
-                        >
-                          “
-                        </span>
-                        {item.quote}
-                        <span aria-hidden="true" className="absolute">
-                          ”
-                        </span>
-                      </p>
-                    </blockquote>
-                  </figure>
-                </div>
-              </CarouselItem>
+          <div className="absolute top-1/2 right-4 transform -translate-y-1/2">
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={nextSlide}
+              className="bg-white/80 hover:bg-white"
+            >
+              →
+            </Button>
+          </div>
+
+          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+            {carouselItems.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentIndex(index)}
+                className={`w-2 h-2 rounded-full transition-colors ${
+                  index === currentIndex ? "bg-white" : "bg-white/50"
+                }`}
+              />
             ))}
-          </CarouselContent>
-          <CarouselNavigation
-            className="absolute -bottom-20 left-auto top-auto w-full justify-end gap-2"
-            classNameButton="bg-zinc-800 *:stroke-zinc-50 dark:bg-zinc-200 dark:*:stroke-zinc-800"
-            alwaysShow
-          />
-        </Carousel>
+          </div>
+        </div>
       </div>
     </div>
   );
