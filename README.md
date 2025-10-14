@@ -160,6 +160,27 @@ npm run dev
 npm run lint
 ```
 
+### Storybook
+
+View and interact with all components in Storybook:
+
+```bash
+npm run storybook
+```
+
+This will start Storybook on `http://localhost:6006` where you can:
+- Browse all available components
+- See different variants and states
+- Test component interactions
+- View component documentation
+- Copy code examples
+
+### Building Storybook
+
+```bash
+npm run build-storybook
+```
+
 ## Contributing
 
 1. Fork the repository
