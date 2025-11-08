@@ -1,6 +1,6 @@
 {
   "name": "servora-ui-components",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A collection of reusable UI components built with React and Tailwind CSS",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
