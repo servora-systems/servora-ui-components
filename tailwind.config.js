@@ -2,11 +2,13 @@
 module.exports = {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
-  ],
+  './pages/**/*.{ts,tsx}',
+  './components/**/*.{ts,tsx}',
+  './app/**/*.{ts,tsx}',
+  './src/**/*.{ts,tsx}',
+  './.storybook/**/*.{js,ts,jsx,tsx,mdx}', // Storybook stories
+  './dist/**/*.{js,ts,jsx,tsx}'            // prebuilt library files
+],
   prefix: "",
   theme: {
     container: {
