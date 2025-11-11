@@ -1,14 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ["class"],
-  content: [
-  './pages/**/*.{ts,tsx}',
-  './components/**/*.{ts,tsx}',
-  './app/**/*.{ts,tsx}',
-  './src/**/*.{ts,tsx}',
-  './.storybook/**/*.{js,ts,jsx,tsx,mdx}', // Storybook stories
-  './dist/**/*.{js,ts,jsx,tsx}'            // prebuilt library files
-],
+  content: [ "./src/**/*.{js,ts,jsx,tsx}", // ✅ Scan all source files
+    "./.storybook/**/*.{js,ts,jsx,tsx}" ],
   prefix: "",
   theme: {
     container: {

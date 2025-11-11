@@ -3,7 +3,7 @@
 import * as React from "react";
 import LoaderButton from "@/components/servor-ui/ui/loaderButton";
 
-export default function LoaderButtonVariants() {
+export function LoaderButtonVariants() {
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
   async function onSubmit(event: React.SyntheticEvent) {

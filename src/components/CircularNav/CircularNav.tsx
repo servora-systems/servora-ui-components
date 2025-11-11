@@ -11,7 +11,7 @@ import {
   Settings,
   Search,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button } from "../button";
 
 const navItems = [
   { name: "Home", icon: Home, href: "#" },
@@ -23,7 +23,7 @@ const navItems = [
   { name: "Search", icon: Search, href: "#" },
 ];
 
-export default function CircularNav() {
+export function CircularNav() {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
